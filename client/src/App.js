@@ -1,22 +1,25 @@
-import React,{useEffect, useState} from 'react'
+import React from 'react';
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import './App.css';
 
-function App(){
+import Home from './components/Home/Home.js';
 
-	const [backendData, setBackendData] = useState([{}])
-	useEffect(() =>{
-		fetch("/api").then(
-			response => response.json()
-		).then(
-			data => {
-				setBackendData(data)
-			}
-		)
-	},[])
-	return(
-		<div>
-			<p>hello world!</p>
-		</div>
-	)
+function App() {
+  return (
+    <div className="wrapper">
+    	<BrowserRouter>
+        	<nav>
+          		<ul>
+            			<li><Link to="/">Home</Link></li>
+          		</ul>
+        	</nav>
+   		
+	  	<Routes>
+        		<Route path="/" element={<Home/>} />
+      		</Routes>
+    	</BrowserRouter>
+    </div>
+  );
 }
 
-export default App
+export default App;
